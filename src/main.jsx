@@ -1,15 +1,17 @@
-import React, { Children } from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider, Route} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 
+import App from "./App";
 
-// páginas
-import Home from './routes/Home';
-import NewPost from './routes/NewPost';
+import Home from "./routes/Home";
+import Post from "./routes/Post";
+import NewPost from "./routes/NewPost";
+import Admin from "./routes/Admin";
+import EditPost from "./routes/EditPost";
 
-import './index.css';
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -17,19 +19,31 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home /> 
+        element: <Home />,
+      },
+      {
+        path: "/posts/:id",
+        element: <Post />,
       },
       {
         path: "/new",
-        element: <NewPost />
+        element: <NewPost />,
       },
-    ]
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      ,
+      {
+        path: "/posts/edit/:id",
+        element: <EditPost />,
+      },
+    ],
   },
 ]);
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-)
+);
